@@ -9,43 +9,20 @@
                 "properties": {
                     "domain": {
                         "type": "string",
-                        "description": ""
+                        "description": "",
+                        "default": "US"
                     },
                     "hotel_id": {
                         "type": "number",
-                        "description": "Hotel ID"
+                        "description": "Hotel ID. This can be found from hotels_search."
                     },
                     "locale": {
                         "type": "string",
-                        "description": ""
+                        "description": "",
+                        "default": "en_US"
                     }
                 },
-                "required": ["domain", "hotel_id", "locale"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "hotel_info",
-            "description": "Get hotel details",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "domain": {
-                        "type": "string",
-                        "description": ""
-                    },
-                    "hotel_id": {
-                        "type": "number",
-                        "description": "Hotel ID"
-                    },
-                    "locale": {
-                        "type": "string",
-                        "description": ""
-                    }
-                },
-                "required": ["domain", "hotel_id", "locale"]
+                "required": ["hotel_id"]
             }
         }
     },
@@ -53,7 +30,7 @@
         "type": "function",
         "function": {
             "name": "regions_search",
-            "description": "Search region, locations, city or hotel by name",
+            "description": "Search region, locations, city or hotel by name. Returns the region id needed for other tools.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -63,14 +40,16 @@
                     },
                     "domain": {
                         "type": "string",
-                        "description": ""
+                        "description": "",
+                        "default": "US"
                     },
                     "locale": {
                         "type": "string",
-                        "description": ""
+                        "description": "",
+                        "default": "en_US"
                     }
                 },
-                "required": ["query", "domain", "locale"]
+                "required": ["query"]
             }
         }
     },
@@ -78,7 +57,7 @@
         "type": "function",
         "function": {
             "name": "hotels_search",
-            "description": "Get hotels by the filter. Set the `domain`, it is necessary for localization at the currency setting. (meta / Domains List). `accessibility` parameter, needed to get ONLY available hotels. Indicate the `region_id` -> use `Region Search`, check-in and check-out date, number of adults and children",
+            "description": "Get hotels by the filter. (meta / Domains List). Indicate the `region_id` -> use `Region Search` first, check-in and check-out date, number of adults and children.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -88,7 +67,8 @@
                     },
                     "locale": {
                         "type": "string",
-                        "description": ""
+                        "description": "",
+                        "default": "en_US"
                     },
                     "checkin_date": {
                         "type": "string",
@@ -105,14 +85,15 @@
                     },
                     "domain": {
                         "type": "string",
-                        "description": ""
+                        "description": "",
+                        "default": "US"
                     },
                     "checkout_date": {
                         "type": "string",
                         "description": "Checkout Date, YYYY-MM-DD"
                     }
                 },
-                "required": ["region_id", "locale", "checkin_date", "sort_order", "adults_number", "domain", "checkout_date"]
+                "required": ["region_id", "checkin_date", "sort_order", "adults_number", "checkout_date"]
             }
         }
     }
