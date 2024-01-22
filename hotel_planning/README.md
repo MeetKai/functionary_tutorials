@@ -1,7 +1,5 @@
 # Hotel Planning Chatbot with Functionary and external APIs
 
-**Insert GIF here**
-
 This module contains the code to run the simple hotel planning chatbot using Functionary and external APIs. The tutorial is provided [here](https://app.archbee.com/public/PREVIEW-hxp_DUA-ZUQ1iDZeDwYM9/PREVIEW-3l3pn7rtmGko_Wi_ZPRFR).
 
 ## Prerequisite
