@@ -13,7 +13,11 @@ This module requires subscription for RapidAPI's *Hotels-com-provider* APIs. Ple
 ```shell
 pip install requirements.txt
 ```
-3. Run the main script
+3. Export your RapidAPI API key as an environment variable.
+```shell
+export RAPIDAPI_KEY=your_rapidapi_key
+```
+4. Run the main script with the same model name as what you are using for the vLLM server.
 ```shell
 python main.py
 ```
