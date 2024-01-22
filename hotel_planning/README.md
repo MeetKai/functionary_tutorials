@@ -19,5 +19,5 @@ export RAPIDAPI_KEY=your_rapidapi_key
 ```
 4. Run the main script with the same model name as what you are using for the vLLM server.
 ```shell
-python main.py
+python main.py model_name
 ```
