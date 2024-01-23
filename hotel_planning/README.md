@@ -11,7 +11,7 @@ This module requires subscription for RapidAPI's *Hotels-com-provider* APIs. Ple
 1. Follow [Functionary's installation and set up](https://github.com/MeetKai/functionary?tab=readme-ov-file#setup) a vLLM server with any [Functionary model](https://huggingface.co/meetkai).
 2. Install this module's dependencies
 ```shell
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 3. Export your RapidAPI API key as an environment variable.
 ```shell
