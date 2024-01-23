@@ -1,3 +1,4 @@
+import ast
 import json
 import os
 import sys
@@ -19,11 +20,11 @@ def infer_model(messages: List[Dict], model: str):
     )
 
     # Postprocess model output
-    if len(output.tool_calls) > 0:
+    if output.tool_calls is not None and len(output.tool_calls) > 0:
         fn_calls = []
         for tool_call in output.tool_calls:
             tool_call = tool_call.function.model_dump()
-            tool_call["arguments"] = json.loads(tool_call["arguments"])
+            tool_call["arguments"] = ast.literal_eval(tool_call["arguments"])
             fn_calls.append(tool_call)
         return fn_calls
     if output.function_call is not None:
@@ -61,8 +62,11 @@ def call_hotels_com_provider_api(api_name: str, input_data: dict, rapidapi_key: 
     if response.status_code != 200:
         errors_json = json.loads(response.text)["detail"]
         errors_text = []
-        for error in errors_json:
-            errors_text.append(f"{error['loc'][-1]}: {error['msg']}")
+        if isinstance(errors_json, str):
+            errors_text.append(errors_json)
+        else:
+            for error in errors_json:
+                errors_text.append(f"{error['loc'][-1]}: {error['msg']}")
         return {"message": " | ".join(errors_text)}
 
     results = response.json()
