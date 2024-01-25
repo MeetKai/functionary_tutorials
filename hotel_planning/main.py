@@ -7,6 +7,7 @@ from typing import Dict, List, Union
 import fire
 import requests
 from openai import OpenAI
+from termcolor import colored
 
 
 def infer_model(messages: List[Dict], model: str):
@@ -131,16 +132,26 @@ def get_user_input():
 
 
 def print_message(message: Dict[str, str]):
+    role_colors = {"user": "red", "assistant": "green", "tool": "blue"}
+
     if message["role"] == "tool":
         print(
-            f"{message['role'].upper()}: {message['name']} returned `{message['content']}`"
+            colored(f"{message['role'].upper()}", role_colors[message["role"]]),
+            f": {message['name']} returned `{message['content']}`",
+            sep="",
         )
     elif message["role"] == "assistant" and "name" in message:
         print(
-            f"{message['role'].upper()}: Calling `{message['name']}` with arguments `{message['content']}`"
+            colored(f"{message['role'].upper()}", role_colors[message["role"]]),
+            f": Calling `{message['name']}` with arguments `{message['content']}`",
+            sep="",
         )
     else:
-        print(f"{message['role'].upper()}: {message['content']}")
+        print(
+            colored(f"{message['role'].upper()}", role_colors[message["role"]]),
+            f": {message['content']}",
+            sep="",
+        )
 
 
 def execute_tools(
